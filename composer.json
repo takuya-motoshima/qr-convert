@@ -1,0 +1,12 @@
+{
+    "name": "ec2-user/qr-convert",
+    "authors": [
+        {
+            "name": "Takuya Motoshima",
+            "email": "developer.takuyamotoshima@gmail.com"
+        }
+    ],
+    "require": {
+        "endroid/qr-code": "3.7"
+    }
+}

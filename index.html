@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR conversion</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <style>
+    .img {
+      display: block;
+      width: 300px;
+      height: 300px;
+      background-color: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <form id="form" class="pt-5">
+      <div class="form-group">
+        <label>Please enter the URL.</label>
+        <input id="url" type="url" class="form-control" autofocus value="https://www.google.com/">
+      </div>
+      
+      <button class="btn btn-primary" type="submit">Convert</button>
+
+      <img id="img" class="img mt-4">
+    </form>
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script>
+  const url = $('#url');
+  const img = $('#img');
+  $('#form').on('submit', async (event) => {
+    event.preventDefault();
+    const dataurl = await $.ajax({url: 'qr.php', type: 'POST', data: {url: url.val()}});
+    img.attr('src', dataurl);
+  });
+  </script>
+</body>
+</html>
